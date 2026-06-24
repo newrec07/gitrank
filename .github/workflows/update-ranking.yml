@@ -14,21 +14,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Crawl Trending Repos and Update JSON
+      - name: Crawl AI Coding Repos and Translate to Korean
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           node -e "
+            // 1. 무료 구글 번역 API 함수 내장 (API 키 필요 없음)
+            async function translateToKorean(text) {
+              if (!text || text === '설명 없음') return '설명 없음';
+              try {
+                const url = \`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=\${encodeURIComponent(text)}\`;
+                const res = await fetch(url);
+                const json = await res.json();
+                return json[0].map(item => item[0]).join('').trim();
+              } catch (e) {
+                return text; // 번역 실패 시 영문 유지
+              }
+            }
+
             async function fetchRepos() {
-              // 1. 검색어 세팅: claude, cursorrules, vibe coding이 포함된 저장소를 스타 순으로 정렬하여 50개 호출
-              const query = encodeURIComponent('claude code OR cursorrules OR vibe coding in:name,description,readme');
-              const url = \`https://api.github.com/search/repositories?q=\${query}&sort=stars&order=desc&per_page=50\`;
+              // 2. 검색 쿼리 정밀화: in:name,description만 탐색하여 AI 코딩/바이브 코딩 핵심 도구만 필터링 (readme 제외)
+              const keywords = '\"claude code\" OR \"cursor rules\" OR \"cursorrules\" OR \"vibe coding\" OR \"vibe-coding\" OR \"aider\" OR \"cline agent\" OR \"roocode\"';
+              const query = encodeURIComponent(\`(\${keywords}) in:name,description fork:false stars:>50\`);
+              const url = \`https://api.github.com/search/repositories?q=\${query}&sort=stars&order=desc&per_page=30\`;
               
               const response = await fetch(url, {
                 headers: {
                   'Authorization': \`Bearer \${process.env.GH_TOKEN}\`,
                   'Accept': 'application/vnd.github.v3+json',
-                  'User-Agent': 'Vibe-Coding-Auto-Crawler'
+                  'User-Agent': 'Vibe-Coding-Strict-Crawler'
                 }
               });
               
@@ -38,27 +52,43 @@ jobs:
               }
               
               const data = await response.json();
-              
-              // 2. 검색 결과를 웹앱 데이터 구조로 자동 변환
-              const formattedData = data.items.map((repo, index) => ({
-                id: repo.name,
-                rank: index + 1,
-                title: repo.name,
-                full_name: repo.full_name,
-                category: repo.language || 'Mixed',
-                use_case: repo.topics && repo.topics.length > 0 ? repo.topics.join(', ') : 'AI Tool',
-                author: repo.owner.login,
-                likes: repo.stargazers_count, // 깃허브 스타 수를 좋아요로 사용
-                summary: repo.description || '설명 없음',
-                link: repo.html_url,
-                is_hall_of_fame: repo.stargazers_count >= 10000 // 스타 1만개 이상은 명예의 전당으로 자동 분류
-              }));
+              const formattedData = [];
 
-              // 3. data.json 파일 덮어쓰기
+              // 3. 루프를 돌며 영문 설명을 한글로 실시간 번역 가공
+              for (let i = 0; i < data.items.length; i++) {
+                const repo = data.items[i];
+                const rawDescription = repo.description || '설명 없음';
+                
+                // 번역 실행
+                const koDescription = await translateToKorean(rawDescription);
+                
+                // 카테고리 매핑 자동화 구조
+                let category = 'AI Tool';
+                if (repo.name.toLowerCase().includes('cursor')) category = 'Cursor';
+                else if (repo.name.toLowerCase().includes('claude')) category = 'Claude';
+                else if (repo.name.toLowerCase().includes('cline') || repo.name.toLowerCase().includes('roo')) category = 'Agent';
+
+                formattedData.push({
+                  id: repo.name,
+                  rank: i + 1,
+                  title: repo.name,
+                  full_name: repo.full_name,
+                  category: category,
+                  use_case: repo.topics && repo.topics.length > 0 ? repo.topics.slice(0, 3).join(', ') : 'AI 코딩 개발 도구',
+                  author: repo.owner.login,
+                  likes: repo.stargazers_count,
+                  summary: koDescription, // 한글 번역본 적용
+                  link: repo.html_url,
+                  is_hall_of_fame: repo.stargazers_count >= 5000 // 순수 AI 툴 생태계 기준 스타 5천개 이상 명예의 전당행
+                });
+              }
+
+              // 4. data.json 저장
               const fs = require('fs');
               fs.writeFileSync('data.json', JSON.stringify(formattedData, null, 2));
-              console.log('크롤링 성공: 50개 데이터 갱신 완료');
+              console.log(\`정밀 크롤링 및 한글 번역 완료: \${formattedData.length}개 항목\`);
             }
+            
             fetchRepos();
           "
 
@@ -67,5 +97,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
-          git commit -m "auto: 깃허브 트렌딩 자동 크롤링 및 업데이트" || echo "변경된 데이터가 없습니다."
+          git commit -m "auto: AI 코딩 타겟 정밀 크롤링 및 한글 번역 반영" || echo "변경 사항 없음"
           git push
