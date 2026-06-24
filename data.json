@@ -1,0 +1,28 @@
+[
+  {
+    "id": "everything-claude-code",
+    "rank": 1,
+    "title": "everything-claude-code 세팅",
+    "category": "AI Agent",
+    "use_case": "비용 절감, 컨텍스트 최적화, 보안",
+    "author": "affaan-m",
+    "likes": 0,
+    "discussion_number": 1,
+    "summary": "settings.json 3줄로 Claude Code 비용 80% 절감 및 AgentShield 보안 스캐너 내장 시스템.",
+    "link": "https://github.com/affaan-m/everything-claude-code",
+    "is_hall_of_fame": true
+  },
+  {
+    "id": "cursor-rules-awesome",
+    "rank": 2,
+    "title": "Awesome Cursor Rules",
+    "category": "Cursor",
+    "use_case": "프롬프트 최적화, 바이브 코딩 표준화",
+    "author": "vibe-coder",
+    "likes": 0,
+    "discussion_number": 2,
+    "summary": "Cursor 에디터에서 바이브 코딩 효율을 극대화해주는 .cursorrules 모음집.",
+    "link": "https://github.com/dotfiles/cursorrules",
+    "is_hall_of_fame": false
+  }
+]
