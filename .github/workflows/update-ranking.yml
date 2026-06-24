@@ -1,68 +1,71 @@
-name: Update Dashboard Rankings
+name: Auto GitHub Crawler
 
 on:
   schedule:
-    - cron: '0 15 * * *' # 매일 KST 자정(UTC 15:00) 작동
-  workflow_dispatch: # 수동 실행 버튼 허용
+    - cron: '0 15 * * *' # 매일 KST 자정 실행
+  workflow_dispatch: # 수동 실행 버튼
 
 jobs:
-  update-data:
+  crawl-and-update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      discussions: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch Discussion Upvotes & Update JSON
+      - name: Crawl Trending Repos and Update JSON
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
         run: |
-          # 1. 저장소 정보 추출
-          OWNER=$(echo $REPO | cut -d'/' -f1)
-          NAME=$(echo $REPO | cut -d'/' -f2)
-
-          # 2. GraphQL API로 Discussions 데이터 추출 (최대 100개)
-          gh api graphql -F owner=$OWNER -F name=$NAME -f query='
-            query($owner: String!, $name: String!) {
-              repository(owner: $owner, name: $name) {
-                discussions(first: 100) {
-                  nodes {
-                    number
-                    upvoteCount
-                  }
-                }
-              }
-            }
-          ' > discussions.json
-
-          # 3. Node.js를 이용해 data.json에 좋아요 수치 반영
           node -e "
-            const fs = require('fs');
-            const discussionsData = JSON.parse(fs.readFileSync('discussions.json', 'utf8'));
-            let targetData = JSON.parse(fs.readFileSync('data.json', 'utf8'));
-
-            const votesMap = {};
-            discussionsData.data.repository.discussions.nodes.forEach(node => {
-              votesMap[node.number] = node.upvoteCount;
-            });
-
-            targetData = targetData.map(item => {
-              if (votesMap[item.discussion_number] !== undefined) {
-                item.likes = votesMap[item.discussion_number];
+            async function fetchRepos() {
+              // 1. 검색어 세팅: claude, cursorrules, vibe coding이 포함된 저장소를 스타 순으로 정렬하여 50개 호출
+              const query = encodeURIComponent('claude code OR cursorrules OR vibe coding in:name,description,readme');
+              const url = \`https://api.github.com/search/repositories?q=\${query}&sort=stars&order=desc&per_page=50\`;
+              
+              const response = await fetch(url, {
+                headers: {
+                  'Authorization': \`Bearer \${process.env.GH_TOKEN}\`,
+                  'Accept': 'application/vnd.github.v3+json',
+                  'User-Agent': 'Vibe-Coding-Auto-Crawler'
+                }
+              });
+              
+              if (!response.ok) {
+                console.error('API 에러:', response.statusText);
+                process.exit(1);
               }
-              return item;
-            });
+              
+              const data = await response.json();
+              
+              // 2. 검색 결과를 웹앱 데이터 구조로 자동 변환
+              const formattedData = data.items.map((repo, index) => ({
+                id: repo.name,
+                rank: index + 1,
+                title: repo.name,
+                full_name: repo.full_name,
+                category: repo.language || 'Mixed',
+                use_case: repo.topics && repo.topics.length > 0 ? repo.topics.join(', ') : 'AI Tool',
+                author: repo.owner.login,
+                likes: repo.stargazers_count, // 깃허브 스타 수를 좋아요로 사용
+                summary: repo.description || '설명 없음',
+                link: repo.html_url,
+                is_hall_of_fame: repo.stargazers_count >= 10000 // 스타 1만개 이상은 명예의 전당으로 자동 분류
+              }));
 
-            fs.writeFileSync('data.json', JSON.stringify(targetData, null, 2));
+              // 3. data.json 파일 덮어쓰기
+              const fs = require('fs');
+              fs.writeFileSync('data.json', JSON.stringify(formattedData, null, 2));
+              console.log('크롤링 성공: 50개 데이터 갱신 완료');
+            }
+            fetchRepos();
           "
 
-      - name: Commit and Push changes
+      - name: Commit and Push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
-          git commit -m "chore: 일간 랭킹 및 좋아요 수치 자동 업데이트" || echo "No changes to commit"
+          git commit -m "auto: 깃허브 트렌딩 자동 크롤링 및 업데이트" || echo "변경된 데이터가 없습니다."
           git push
