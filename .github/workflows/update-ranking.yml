@@ -1,0 +1,68 @@
+name: Update Dashboard Rankings
+
+on:
+  schedule:
+    - cron: '0 15 * * *' # 매일 KST 자정(UTC 15:00) 작동
+  workflow_dispatch: # 수동 실행 버튼 허용
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      discussions: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Discussion Upvotes & Update JSON
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          # 1. 저장소 정보 추출
+          OWNER=$(echo $REPO | cut -d'/' -f1)
+          NAME=$(echo $REPO | cut -d'/' -f2)
+
+          # 2. GraphQL API로 Discussions 데이터 추출 (최대 100개)
+          gh api graphql -F owner=$OWNER -F name=$NAME -f query='
+            query($owner: String!, $name: String!) {
+              repository(owner: $owner, name: $name) {
+                discussions(first: 100) {
+                  nodes {
+                    number
+                    upvoteCount
+                  }
+                }
+              }
+            }
+          ' > discussions.json
+
+          # 3. Node.js를 이용해 data.json에 좋아요 수치 반영
+          node -e "
+            const fs = require('fs');
+            const discussionsData = JSON.parse(fs.readFileSync('discussions.json', 'utf8'));
+            let targetData = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+            const votesMap = {};
+            discussionsData.data.repository.discussions.nodes.forEach(node => {
+              votesMap[node.number] = node.upvoteCount;
+            });
+
+            targetData = targetData.map(item => {
+              if (votesMap[item.discussion_number] !== undefined) {
+                item.likes = votesMap[item.discussion_number];
+              }
+              return item;
+            });
+
+            fs.writeFileSync('data.json', JSON.stringify(targetData, null, 2));
+          "
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git commit -m "chore: 일간 랭킹 및 좋아요 수치 자동 업데이트" || echo "No changes to commit"
+          git push
