@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding Radar</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d1117; color: #c9d1d9; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1, h2 { color: #f0f6fc; border-bottom: 1px solid #21262d; padding-bottom: 10px; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .badge { background: #1f6feb; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; }
+        .badge.hof { background: #d29922; }
+        .vote-btn { background: #21262d; border: 1px solid #30363d; color: #58a6ff; padding: 8px 12px; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 14px; }
+        .vote-btn:hover { background: #30363d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏆 명예의 전당 (Hall of Fame)</h1>
+        <div id="hall-of-fame"></div>
+
+        <h1>🎵 일간 랭킹 TOP 100</h1>
+        <div id="ranking-list"></div>
+    </div>
+
+    <script>
+        const REPO_URL = "https://github.com/당신의유저명/당신의레포명/discussions";
+
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                // 1. 좋아요 순으로 정렬
+                data.sort((a, b) => b.likes - a.likes);
+
+                const hofContainer = document.getElementById('hall-of-fame');
+                const listContainer = document.getElementById('ranking-list');
+
+                data.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div>
+                            <span class="badge ${item.is_hall_of_fame ? 'hof' : ''}">${item.is_hall_of_fame ? '명예의전당' : 'RANK ' + (index + 1)}</span>
+                            <h3 style="margin: 5px 0; color: #f0f6fc;">${item.title}</h3>
+                            <p style="margin: 5px 0; font-size: 14px; color: #8b949e;">${item.summary || '설명 없음'}</p>
+                            <small style="color: #58a6ff;">용도: ${item.use_case} | 분류: ${item.category}</small>
+                        </div>
+                        <div>
+                            <a href="${REPO_URL}/${item.discussion_number}" target="_blank" class="vote-btn">👍 ${item.likes} 추천하기</a>
+                        </div>
+                    `;
+
+                    if (item.is_hall_of_fame) {
+                        hofContainer.appendChild(card.cloneNode(true));
+                    }
+                    listContainer.appendChild(card);
+                });
+            });
+    </script>
+</body>
+</html>
