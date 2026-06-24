@@ -3,60 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Coding Radar</title>
+    <title>Vibe Coding Radar (Auto Crawled)</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d1117; color: #c9d1d9; margin: 0; padding: 20px; }
         .container { max-width: 800px; margin: 0 auto; }
-        h1, h2 { color: #f0f6fc; border-bottom: 1px solid #21262d; padding-bottom: 10px; }
+        .header-area { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #21262d; margin-bottom: 20px; }
+        h1, h2 { color: #f0f6fc; margin: 10px 0; }
         .card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
         .badge { background: #1f6feb; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; }
         .badge.hof { background: #d29922; }
-        .vote-btn { background: #21262d; border: 1px solid #30363d; color: #58a6ff; padding: 8px 12px; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 14px; }
+        .vote-btn { background: #21262d; border: 1px solid #30363d; color: #58a6ff; padding: 8px 12px; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 14px; display: inline-block; }
         .vote-btn:hover { background: #30363d; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🏆 명예의 전당 (Hall of Fame)</h1>
+        <div class="header-area">
+            <h1>🏆 명예의 전당 (Stars 10k+)</h1>
+            <button class="vote-btn" onclick="loadData()">🔄 화면 새로고침</button>
+        </div>
         <div id="hall-of-fame"></div>
 
-        <h1>🎵 일간 랭킹 TOP 100</h1>
+        <h1 style="border-bottom: 1px solid #21262d; padding-bottom: 10px; margin-top: 40px;">🎵 일간 트렌딩 리스트 (Auto Crawled)</h1>
         <div id="ranking-list"></div>
     </div>
 
     <script>
-        const REPO_URL = "https://github.com/newrec07/gitrank/discussions";
+        function loadData() {
+            // 브라우저 캐시를 무시하고 항상 최신 data.json을 불러옴
+            const cacheBuster = new Date().getTime();
+            fetch(`data.json?t=${cacheBuster}`, { cache: 'no-store' })
+                .then(response => response.json())
+                .then(data => {
+                    const hofContainer = document.getElementById('hall-of-fame');
+                    const listContainer = document.getElementById('ranking-list');
+                    
+                    hofContainer.innerHTML = '';
+                    listContainer.innerHTML = '';
 
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                // 1. 좋아요 순으로 정렬
-                data.sort((a, b) => b.likes - a.likes);
+                    data.forEach((item, index) => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `
+                            <div style="flex: 1; padding-right: 15px;">
+                                <span class="badge ${item.is_hall_of_fame ? 'hof' : ''}">${item.is_hall_of_fame ? '명예의전당' : 'RANK ' + (index + 1)}</span>
+                                <h3 style="margin: 8px 0; color: #f0f6fc;">
+                                    <a href="${item.link}" target="_blank" style="color: #58a6ff; text-decoration: none;">${item.full_name}</a>
+                                </h3>
+                                <p style="margin: 5px 0; font-size: 14px; color: #8b949e; line-height: 1.4;">${item.summary}</p>
+                                <small style="color: #7ee787;">언어: ${item.category} | 태그: ${item.use_case}</small>
+                            </div>
+                            <div style="min-width: 100px; text-align: right;">
+                                <a href="${item.link}" target="_blank" class="vote-btn">⭐ ${item.likes.toLocaleString()}</a>
+                            </div>
+                        `;
 
-                const hofContainer = document.getElementById('hall-of-fame');
-                const listContainer = document.getElementById('ranking-list');
+                        if (item.is_hall_of_fame) {
+                            hofContainer.appendChild(card.cloneNode(true));
+                        }
+                        listContainer.appendChild(card);
+                    });
+                })
+                .catch(error => console.error('데이터를 찾을 수 없습니다 (크롤러가 아직 돌지 않았습니다).', error));
+        }
 
-                data.forEach((item, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                        <div>
-                            <span class="badge ${item.is_hall_of_fame ? 'hof' : ''}">${item.is_hall_of_fame ? '명예의전당' : 'RANK ' + (index + 1)}</span>
-                            <h3 style="margin: 5px 0; color: #f0f6fc;">${item.title}</h3>
-                            <p style="margin: 5px 0; font-size: 14px; color: #8b949e;">${item.summary || '설명 없음'}</p>
-                            <small style="color: #58a6ff;">용도: ${item.use_case} | 분류: ${item.category}</small>
-                        </div>
-                        <div>
-                            <a href="${REPO_URL}/${item.discussion_number}" target="_blank" class="vote-btn">👍 ${item.likes} 추천하기</a>
-                        </div>
-                    `;
-
-                    if (item.is_hall_of_fame) {
-                        hofContainer.appendChild(card.cloneNode(true));
-                    }
-                    listContainer.appendChild(card);
-                });
-            });
+        loadData();
     </script>
 </body>
 </html>
