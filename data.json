@@ -7,8 +7,8 @@
     "category": "AI Tool",
     "use_case": "ai-agents, anthropic, claude",
     "author": "affaan-m",
-    "likes": 230013,
-    "summary": "에이전트 하네스 성능 최적화 시스템. Claude Code, Codex, Opencode, Cursor 등을 위한 기술, 본능, 기억, 보안 및 연구 우선 개발.",
+    "likes": 230353,
+    "summary": "에이전트 하네스 성능 최적화 시스템. Claude Code, Codex, Opencode, Cursor 등을 위한 기술, 본능, 기억력, 보안 및 연구 우선 개발.",
     "link": "https://github.com/affaan-m/ECC",
     "is_hall_of_fame": true
   },
@@ -20,7 +20,7 @@
     "category": "AI Tool",
     "use_case": "AI 코딩 도구",
     "author": "multica-ai",
-    "likes": 192675,
+    "likes": 193165,
     "summary": "LLM 코딩 함정에 대한 Andrej Karpathy의 관찰에서 파생된 Claude 코드 동작을 개선하기 위한 단일 CLAUDE.md 파일입니다.",
     "link": "https://github.com/multica-ai/andrej-karpathy-skills",
     "is_hall_of_fame": true
@@ -33,7 +33,7 @@
     "category": "AI Tool",
     "use_case": "AI 코딩 도구",
     "author": "mattpocock",
-    "likes": 171849,
+    "likes": 173831,
     "summary": "실제 엔지니어를 위한 기술. 내 .claude 디렉토리에서 바로.",
     "link": "https://github.com/mattpocock/skills",
     "is_hall_of_fame": true
@@ -46,7 +46,7 @@
     "category": "AI Tool",
     "use_case": "ai, bolt, cluely",
     "author": "x1xhlol",
-    "likes": 141943,
+    "likes": 141974,
     "summary": "전체 증강 코드, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (및 기타 오픈 소스) 시스템 프롬프트, 내부 도구 및 AI 모델",
     "link": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
     "is_hall_of_fame": true
@@ -59,7 +59,7 @@
     "category": "Claude",
     "use_case": "AI 코딩 도구",
     "author": "anthropics",
-    "likes": 137961,
+    "likes": 138082,
     "summary": "Claude Code는 터미널에 존재하는 에이전트 코딩 도구로, 코드베이스를 이해하고 자연어 명령을 통해 일상적인 작업을 실행하고, 복잡한 코드를 설명하고, Git 워크플로를 처리하여 더 빠르게 코딩할 수 있도록 도와줍니다.",
     "link": "https://github.com/anthropics/claude-code",
     "is_hall_of_fame": true
@@ -72,7 +72,7 @@
     "category": "AI Tool",
     "use_case": "AI 코딩 도구",
     "author": "garrytan",
-    "likes": 122045,
+    "likes": 122252,
     "summary": "Garry Tan의 정확한 Claude Code 설정 사용: CEO, 디자이너, 엔지니어링 관리자, 릴리스 관리자, 문서 엔지니어 및 QA 역할을 하는 23가지 독보적인 도구",
     "link": "https://github.com/garrytan/gstack",
     "is_hall_of_fame": true
@@ -85,7 +85,7 @@
     "category": "AI Tool",
     "use_case": "ai-tools, claude-code, codex",
     "author": "farion1231",
-    "likes": 117547,
+    "likes": 117904,
     "summary": "Claude Code, Codex, OpenCode, OpenClaw, Gemini CLI 및 Hermes Agent를 위한 크로스 플랫폼 데스크톱 올인원 도우미입니다. 유일한 공식 웹사이트: ccswitch.io",
     "link": "https://github.com/farion1231/cc-switch",
     "is_hall_of_fame": true
@@ -98,7 +98,7 @@
     "category": "AI Tool",
     "use_case": "ai, anthropic, caveman",
     "author": "JuliusBrussee",
-    "likes": 89757,
+    "likes": 90115,
     "summary": "🪨 소수의 토큰이 트릭을 할 때 많은 토큰을 사용하는 이유 — 원시인처럼 말하여 토큰의 65%를 삭감하는 클로드 코드 스킬",
     "link": "https://github.com/JuliusBrussee/caveman",
     "is_hall_of_fame": true
@@ -111,7 +111,7 @@
     "category": "AI Tool",
     "use_case": "antigravity, claude-code, codex",
     "author": "Graphify-Labs",
-    "likes": 87476,
+    "likes": 88613,
     "summary": "AI 코딩 보조 기술(Claude Code, Codex, OpenCode, Cursor, Gemini CLI 등) 코드, SQL 스키마, R 스크립트, 셸 스크립트, 문서, 논문, 이미지 또는 비디오 폴더를 쿼리 가능한 지식 그래프로 전환하세요. 앱 코드 + 데이터베이스 스키마 + 인프라를 하나의 그래프로 표현합니다.",
     "link": "https://github.com/Graphify-Labs/graphify",
     "is_hall_of_fame": true
@@ -124,8 +124,8 @@
     "category": "Claude",
     "use_case": "ai, ai-agents, ai-memory",
     "author": "thedotmack",
-    "likes": 87364,
-    "summary": "모든 에이전트에 대해 세션 전반에 걸쳐 지속적인 컨텍스트 – 에이전트가 세션 중에 수행하는 모든 작업을 캡처하고 이를 AI로 압축한 후 향후 세션에 관련 컨텍스트를 다시 주입합니다. Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode 등과 함께 작동합니다.",
+    "likes": 87483,
+    "summary": "모든 에이전트에 대해 세션 전반에 걸쳐 지속적인 컨텍스트 – 에이전트가 세션 중에 수행하는 모든 작업을 캡처하고 이를 AI로 압축한 후 관련 컨텍스트를 향후 세션에 다시 주입합니다. Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode 등과 함께 작동합니다.",
     "link": "https://github.com/thedotmack/claude-mem",
     "is_hall_of_fame": true
   },
@@ -137,7 +137,7 @@
     "category": "AI Tool",
     "use_case": "agent-skills, ai-agents, ai-design",
     "author": "nexu-io",
-    "likes": 78493,
+    "likes": 78881,
     "summary": "🎨 오픈 소스 Claude Design 대안. 🖥️ 로컬 최초 데스크톱 앱. 🖼️ 코딩 에이전트가 프로토타입, 랜딩 페이지, 대시보드, 슬라이드, 이미지 및 비디오 등 실제 파일, HTML/PDF/PPTX/MP4 내보내기 등 디자인 엔진이 됩니다. 🤖 Claude Code / Codex / Cursor / Gemini / OpenCode / Qwen 및 BYOK를 통한 20개 이상의 CLI.",
     "link": "https://github.com/nexu-io/open-design",
     "is_hall_of_fame": true
@@ -150,7 +150,7 @@
     "category": "AI Tool",
     "use_case": "antigravity-skills, business-knowledge, claude-code",
     "author": "Egonex-AI",
-    "likes": 74260,
+    "likes": 74528,
     "summary": "가르치는 그래프 > 인상적인 그래프. 모든 코드를 탐색, 검색, 질문할 수 있는 대화형 지식 그래프로 변환하세요. Claude Code, Codex, Cursor, Copilot, Gemini CLI 등과 함께 작동합니다.",
     "link": "https://github.com/Egonex-AI/Understand-Anything",
     "is_hall_of_fame": true
@@ -163,8 +163,8 @@
     "category": "Claude",
     "use_case": "agent, agent-development, ai-agent",
     "author": "shareAI-lab",
-    "likes": 71113,
-    "summary": "Bash만 있으면 됩니다. - 0에서 1까지 구축된 「에이전트 하네스」와 같은 나노 클로드 코드",
+    "likes": 71230,
+    "summary": "Bash만 있으면 됩니다. - 0부터 1까지 구축된 「에이전트 하네스」와 같은 나노 클로드 코드",
     "link": "https://github.com/shareAI-lab/learn-claude-code",
     "is_hall_of_fame": true
   },
@@ -176,7 +176,7 @@
     "category": "Claude",
     "use_case": "agent-skills, ai-agents, antigravity",
     "author": "ComposioHQ",
-    "likes": 67789,
+    "likes": 67868,
     "summary": "Claude AI 워크플로우를 사용자 정의하기 위한 멋진 Claude 기술, 리소스 및 도구의 선별된 목록",
     "link": "https://github.com/ComposioHQ/awesome-claude-skills",
     "is_hall_of_fame": true
@@ -189,7 +189,7 @@
     "category": "AI Tool",
     "use_case": "claude-code, context-engineering, meta-prompting",
     "author": "gsd-build",
-    "likes": 64745,
+    "likes": 64754,
     "summary": "TÂCHES의 Claude Code를 위한 가볍고 강력한 메타 프롬프트, 컨텍스트 엔지니어링 및 사양 기반 개발 시스템입니다.",
     "link": "https://github.com/gsd-build/get-shit-done",
     "is_hall_of_fame": true
@@ -202,7 +202,7 @@
     "category": "AI Tool",
     "use_case": "agentic-ai, agentic-framework, agentic-workflow",
     "author": "ruvnet",
-    "likes": 64510,
+    "likes": 64639,
     "summary": "🌊 대표 에이전트 메타하네스. 지능형 멀티 플레이어 떼를 배포하고, 자율적인 워크플로를 조정하고, 대화형 AI 시스템을 구축하세요. 적응형 메모리, 자가 학습 인텔리전스, RAG 통합 및 기본 Claude Code/Codex/Hermes 등 다양한 기능 통합",
     "link": "https://github.com/ruvnet/ruflo",
     "is_hall_of_fame": true
@@ -215,35 +215,35 @@
     "category": "Claude",
     "use_case": "agentic-ai, agentic-coding, agentic-engineering",
     "author": "shanraisshan",
-    "likes": 62646,
+    "likes": 62861,
     "summary": "바이브 코딩부터 에이전트 엔지니어링까지 - 연습이 클로드를 완벽하게 만듭니다",
     "link": "https://github.com/shanraisshan/claude-code-best-practice",
     "is_hall_of_fame": true
   },
   {
-    "id": "career-ops",
-    "rank": 18,
-    "title": "career-ops",
-    "full_name": "santifer/career-ops",
-    "category": "AI Tool",
-    "use_case": "ai, ai-agent, anthropic",
-    "author": "santifer",
-    "likes": 60225,
-    "summary": "오픈 소스 AI 구직 검색: 직업 포털 스캔, A~F 목록 점수 매기기, 이력서 맞춤화, 지원서 추적 — AI 코딩 CLI(Claude Code, Gemini, Codex, OpenCode…)에서 로컬로 실행됩니다.",
-    "link": "https://github.com/santifer/career-ops",
-    "is_hall_of_fame": true
-  },
-  {
     "id": "codegraph",
-    "rank": 19,
+    "rank": 18,
     "title": "codegraph",
     "full_name": "colbymchenry/codegraph",
     "category": "AI Tool",
     "use_case": "AI 코딩 도구",
     "author": "colbymchenry",
-    "likes": 60158,
+    "likes": 60375,
     "summary": "사전 색인화된 코드 지식 그래프, 코드 변경 시 자동 동기화, Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro 및 Hermes Agent용 — 더 적은 토큰, 더 적은 도구 호출, 100% 로컬",
     "link": "https://github.com/colbymchenry/codegraph",
+    "is_hall_of_fame": true
+  },
+  {
+    "id": "career-ops",
+    "rank": 19,
+    "title": "career-ops",
+    "full_name": "santifer/career-ops",
+    "category": "AI Tool",
+    "use_case": "ai, ai-agent, anthropic",
+    "author": "santifer",
+    "likes": 60327,
+    "summary": "오픈 소스 AI 구직 검색: 직업 포털 스캔, A~F 목록 점수 매기기, 이력서 맞춤화, 지원서 추적 — AI 코딩 CLI(Claude Code, Gemini, Codex, OpenCode…)에서 로컬로 실행됩니다.",
+    "link": "https://github.com/santifer/career-ops",
     "is_hall_of_fame": true
   },
   {
@@ -254,7 +254,7 @@
     "category": "AI Tool",
     "use_case": "ai, ai-agents, anthropic",
     "author": "asgeirtj",
-    "likes": 58006,
+    "likes": 58326,
     "summary": "Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design에서 시스템 프롬프트를 추출했습니다. OpenAI - ChatGPT GPT-5.6, Codex GPT-5.6, GPT-5.5. Google - Gemini 3.5 Flash, 3.1 Pro, 반중력. xAI - Grok, Cursor, Copilot, VS Code, Perplexity 등. 정기적으로 업데이트됩니다.",
     "link": "https://github.com/asgeirtj/system_prompts_leaks",
     "is_hall_of_fame": true
@@ -267,8 +267,8 @@
     "category": "Claude",
     "use_case": "agent-skills, agentic-code, agentic-coding",
     "author": "hesreallyhim",
-    "likes": 50082,
-    "summary": "Anthropic PBC의 막을 수 없는 팀에서 코딩 동료의 확실한 챔피언인 가장 멋진 에이전트인 Claude Code를 위해 엄선한 최고의 리소스 컬렉션입니다. 최고 수준의 기술, 양손잡이 에이전트, 눈부신 상태 표시줄, 최고 수준의 개발자 도구 및 플러그인을 보여주는 맛있는 쇼케이스",
+    "likes": 50153,
+    "summary": "Anthropic PBC의 막을 수 없는 팀에서 코딩 동료의 확실한 챔피언인 가장 멋진 에이전트인 Claude Code를 위해 엄선한 최고의 리소스 컬렉션입니다. 최고 수준의 기술, 양손잡이 에이전트, 눈부신 상태 표시줄, 최고 수준의 개발자 도구 및 플러그인을 보여주는 즐거운 쇼케이스",
     "link": "https://github.com/hesreallyhim/awesome-claude-code",
     "is_hall_of_fame": true
   },
@@ -280,8 +280,8 @@
     "category": "Claude",
     "use_case": "AI 코딩 도구",
     "author": "anthropics",
-    "likes": 48917,
-    "summary": "Claude를 사용하는 재미있고 효과적인 방법을 보여주는 노트북/레시피 모음입니다.",
+    "likes": 49031,
+    "summary": "Claude를 사용하는 재미 있고 효과적인 방법을 보여주는 노트북/레시피 모음입니다.",
     "link": "https://github.com/anthropics/claude-cookbooks",
     "is_hall_of_fame": true
   },
@@ -293,7 +293,7 @@
     "category": "AI Tool",
     "use_case": "agents, ai, chatgpt",
     "author": "elder-plinius",
-    "likes": 45567,
+    "likes": 45648,
     "summary": "CHATGPT, CLAUDE, GEMINI, GROK, PERPLEXITY, CURSOR, LOVABLE, REPLIT 등에 대한 시스템 프롬프트가 유출되었습니다! - 모두를 위한 AI 시스템 투명성! 👐",
     "link": "https://github.com/elder-plinius/CL4R1T4S",
     "is_hall_of_fame": true
@@ -306,7 +306,7 @@
     "category": "AI Tool",
     "use_case": "agent-skills, agentic-skills, ai-agent-skills",
     "author": "sickn33",
-    "likes": 43319,
+    "likes": 43398,
     "summary": "Claude Code, Cursor, Codex CLI, Autohand Code, Gemini CLI, Antigravity 등에 대한 1,900개 이상의 에이전트 기술이 포함된 설치 가능한 GitHub 라이브러리입니다. 전문 플러그인, 설치 프로그램 CLI, 번들, 워크플로 및 공식/커뮤니티 기술 컬렉션이 포함됩니다.",
     "link": "https://github.com/sickn33/agentic-awesome-skills",
     "is_hall_of_fame": true
@@ -319,7 +319,7 @@
     "category": "AI Tool",
     "use_case": "ai-gateway, claude, deepseek",
     "author": "QuantumNous",
-    "likes": 42328,
+    "likes": 42452,
     "summary": "집계 및 배포를 위한 통합 AI 모델 허브입니다. 다양한 LLM을 OpenAI 호환, Claude 호환 또는 Gemini 호환 형식으로 교차 변환하는 것을 지원합니다. 개인 및 기업 모델 관리를 위한 중앙 집중식 게이트웨이입니다. 🍥",
     "link": "https://github.com/QuantumNous/new-api",
     "is_hall_of_fame": true
@@ -332,7 +332,7 @@
     "category": "AI Tool",
     "use_case": "antigravity, claude-code, cluade",
     "author": "router-for-me",
-    "likes": 42141,
+    "likes": 42448,
     "summary": "Wrap Antigravity, ChatGPT Codex, Claude Code, Grok는 OpenAI/Gemini/Claude/Codex 호환 API 서비스로 빌드되어 API를 통해 무료 Gemini 3.1 Pro, GPT 5.5, Grok 4.3, Claude 모델을 즐길 수 있습니다.",
     "link": "https://github.com/router-for-me/CLIProxyAPI",
     "is_hall_of_fame": true
@@ -345,35 +345,35 @@
     "category": "Claude",
     "use_case": "AI 코딩 도구",
     "author": "Alishahryar1",
-    "likes": 40225,
+    "likes": 40550,
     "summary": "터미널, IDE 또는 OpenClaw와 같은 휴대폰(음성 지원)에서 clude code, codex 또는 pi를 무료로 사용하세요.",
     "link": "https://github.com/Alishahryar1/free-claude-code",
     "is_hall_of_fame": true
   },
   {
-    "id": "claude-howto",
-    "rank": 28,
-    "title": "claude-howto",
-    "full_name": "luongnv89/claude-howto",
-    "category": "Claude",
-    "use_case": "claude-code, guide, tutorial",
-    "author": "luongnv89",
-    "likes": 39875,
-    "summary": "즉각적인 가치를 제공하는 복사-붙여넣기 템플릿을 사용하여 기본 개념부터 고급 에이전트까지 Claude Code에 대한 시각적 예시 중심 가이드입니다.",
-    "link": "https://github.com/luongnv89/claude-howto",
-    "is_hall_of_fame": true
-  },
-  {
     "id": "marketingskills",
-    "rank": 29,
+    "rank": 28,
     "title": "marketingskills",
     "full_name": "coreyhaines31/marketingskills",
     "category": "AI Tool",
     "use_case": "claude, codex, marketing",
     "author": "coreyhaines31",
-    "likes": 39524,
+    "likes": 40136,
     "summary": "Claude Code 및 AI 에이전트를 위한 마케팅 기술. CRO, 카피라이팅, SEO, 분석 및 성장 엔지니어링.",
     "link": "https://github.com/coreyhaines31/marketingskills",
+    "is_hall_of_fame": true
+  },
+  {
+    "id": "claude-howto",
+    "rank": 29,
+    "title": "claude-howto",
+    "full_name": "luongnv89/claude-howto",
+    "category": "Claude",
+    "use_case": "claude-code, guide, tutorial",
+    "author": "luongnv89",
+    "likes": 39912,
+    "summary": "즉각적인 가치를 제공하는 복사-붙여넣기 템플릿을 사용하여 기본 개념부터 고급 에이전트까지 Claude Code에 대한 시각적 예제 중심 가이드입니다.",
+    "link": "https://github.com/luongnv89/claude-howto",
     "is_hall_of_fame": true
   },
   {
@@ -384,7 +384,7 @@
     "category": "AI Tool",
     "use_case": "api, chatgpt, claude",
     "author": "chatanywhere",
-    "likes": 38795,
+    "likes": 38805,
     "summary": "무료 ChatGPT&DeepSeek API 키，免费ChatGPT&DeepSeek API。免费接入DeepSeek API와 GPT4 API，支持 gpt | 깊은 탐색 | 클로드 | 쌍둥이자리 | grok은 이전의 常用大模型입니다.",
     "link": "https://github.com/chatanywhere/GPT_API_free",
     "is_hall_of_fame": true
